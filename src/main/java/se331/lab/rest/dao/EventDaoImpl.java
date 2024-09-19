@@ -105,7 +105,12 @@ public class EventDaoImpl implements EventDao {
         return new PageImpl<Event>(eventList.subList(firstIndex, firstIndex + pageSize), PageRequest.of(page, pageSize), eventList.size());
 
     }
-
+    @Override
+    public Event save(Event event) {
+        event.setId(eventList.get(eventList.size() - 1).getId()+1);
+        eventList.add(event);
+        return event;
+    }
 
     @Override
     public Event getEvent(Long id) {
